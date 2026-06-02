@@ -7,64 +7,57 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository; // 🔥 ADD THIS
+
+@Repository // 🔥 ADD THIS
 public class ProductDAO {
 
-    // Add product
-    public void addProduct(Product product) {
-        String sql = "INSERT INTO products (name, description, price) VALUES (?, ?, ?)";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, product.getName());
-            stmt.setString(2, product.getDescription());
-            stmt.setDouble(3, product.getPrice());
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    // Fetch all products
     public List<Product> getAllProducts() {
+
         List<Product> products = new ArrayList<>();
         String sql = "SELECT * FROM products";
+
         try (Connection conn = DBConnection.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                Product product = new Product();
-                product.setId(rs.getInt("id"));
-                product.setName(rs.getString("name"));
-                product.setDescription(rs.getString("description"));
-                product.setPrice(rs.getDouble("price"));
-                products.add(product);
+
+                Product p = new Product();
+
+                p.setId(rs.getInt("id"));
+                p.setName(rs.getString("name"));
+                p.setDescription(rs.getString("description"));
+                p.setPrice(rs.getDouble("price"));
+                p.setImageUrl(rs.getString("image_url"));
+                p.setBuyLink(rs.getString("buy_link"));
+                p.setScore(rs.getInt("score"));
+
+                products.add(p);
             }
-        } catch (SQLException e) {
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
         return products;
     }
 
-    // ✅ Fetch product by name
-    public Product getProductByName(String name) {
-        String sql = "SELECT * FROM products WHERE name = ?";
+    public void updateProductScore(int productId, int score) {
+
+        String sql = "UPDATE products SET score = score + ? WHERE id = ?";
+
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, name);
-            ResultSet rs = stmt.executeQuery();
+            stmt.setInt(1, score);
+            stmt.setInt(2, productId);
 
-            if (rs.next()) {
-                Product product = new Product();
-                product.setId(rs.getInt("id"));
-                product.setName(rs.getString("name"));
-                product.setDescription(rs.getString("description"));
-                product.setPrice(rs.getDouble("price"));
-                return product;
-            }
-        } catch (SQLException e) {
+            int rows = stmt.executeUpdate();
+            System.out.println("Rows updated: " + rows);
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return null; // not found
     }
 }
