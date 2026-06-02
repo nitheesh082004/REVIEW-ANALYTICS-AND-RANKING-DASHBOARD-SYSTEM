@@ -1,196 +1,271 @@
-Stanford CoreNLP - Stanford's Suite of NLP Tools
-------------------------------------------------
+# 🧠 Smart Product Review Platform
 
-Copyright © 2009-2020 The Board of Trustees of
-The Leland Stanford Junior University. All Rights Reserved.
+A full-stack web application that allows users to browse products, submit reviews, and analyze customer sentiment using Natural Language Processing (NLP). The platform automatically classifies reviews as Positive, Negative, Neutral, Very Positive, or Very Negative and dynamically updates product scores based on user feedback.
 
-DOCUMENTATION
+---
 
-Please look at the URL below for documentation for Stanford CoreNLP:
+## 🚀 Features
 
-  https://nlp.stanford.edu/software/corenlp.html
+### 📦 Product Management
+- View available products
+- Product images and pricing
+- Direct Buy Now links
+- Dynamic product score tracking
 
-LICENSE
+### 🔍 Product Search
+- Real-time product search
+- Filter products by name
+- Fast and responsive UI
 
-//
-// StanfordCoreNLP -- a suite of NLP tools
-// Copyright © 2009-2020 The Board of Trustees of
-// The Leland Stanford Junior University. All Rights Reserved.
-//
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License
-// as published by the Free Software Foundation; either version 2
-// of the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program.  If not, see http://www.gnu.org/licenses/ .
-//
-// For more information, bug reports, fixes, contact:
-//    Christopher Manning
-//    Dept of Computer Science, Gates 2A
-//    Stanford CA 94305-9020
-//    USA
-//
+### ✍️ Review System
+- Submit customer reviews
+- View reviews for each product
+- Real-time review updates
 
----------------------------------
-CHANGES
----------------------------------
+### 🧠 NLP Sentiment Analysis
+- Rule-based sentiment classification
+- Detects:
+  - Very Positive
+  - Positive
+  - Neutral
+  - Negative
+  - Very Negative
+- Handles:
+  - Negation words (`not good`, `don't like`)
+  - Contrast statements (`good but expensive`)
 
-2025-06-06   4.5.10     Additional Semgrex / SSurgeon features and
-                        remove patterns/lucene because of security
-                        warning
+### ⭐ Dynamic Product Ranking
+- Positive reviews increase product score
+- Negative reviews decrease product score
+- Helps identify top-performing products
 
-2025-06-06   4.5.10     Additional Semgrex / SSurgeon features and
-                        remove patterns/lucene because of security
-                        warning
+### 📊 Analytics Dashboard
+- Pie chart visualization
+- Positive vs Negative vs Neutral review distribution
+- Interactive sentiment analysis results
 
-2025-03-23    4.5.9     Additional Semgrex / SSurgeon features and a
-                        security patch recommended for deserialization
+### 📱 Responsive Design
+- Compatible with desktop, tablet, and mobile devices
 
-2024-12-11    4.5.8     Update paths to reflect an internal file 
-                        server dying.  Add brat demo files to distrib 
-                        to reduce dependencies on nlp.stanford.edu.  
-                        Update the con->dep converter for UD.  Update 
-                        some external libraries for security 
-                        vulnerabilities
+---
 
-2024-04-18    4.5.7     Add the f1 scores to the parser output,
-                        improve the dependency converter
+## 🛠️ Tech Stack
 
-2024-01-31    4.5.6     Minor lemmatizer and tokenizer fixes
+### Frontend
+- React.js
+- Axios
+- Chart.js
+- CSS3
 
-2023-09-06    4.5.5     Fix up some SD and UD conversion errors.  Add
-                        SceneGraph to the server.  Fix Tregex optional
-                        bug.  "fourty" and forty (40) days in SUTime.
+### Backend
+- Spring Boot
+- Java
+- REST APIs
 
-2023-03-15    4.5.4     Minor updates to Ssurgeon, include the
-                        Morphology CLI
+### Database
+- MySQL
+- JDBC
 
-2023-03-10    4.5.3     Fix the collinizer.  Add an Ssurgeon interface
+### NLP
+- Rule-Based Sentiment Analysis
+- Lexicon-Based Scoring
+- HashMap Sentiment Dictionary
 
-2023-01-19    4.5.2     Update package dependencies to avoid security
-                        problems.  Add protobuf CLI tools for use in
-                        Python or elsewhere
+---
 
-2022-08-29    4.5.1     Bugfixes to tokenizer and semgrex
+## 🏗️ System Architecture
 
-2022-07-21    4.5.0     Tokenizer and lemmatizer upgrades, along with
-                        a new tsurgeon operation and some bugfixes
+```text
+React Frontend
+       │
+       ▼
+Axios HTTP Requests
+       │
+       ▼
+Spring Boot REST APIs
+       │
+       ▼
+DAO Layer
+       │
+       ▼
+MySQL Database
+       │
+       ▼
+NLP Sentiment Analyzer
+       │
+       ▼
+Updated Product Scores
+```
 
-2022-01-20    4.4.0     Fix issue with Italian depparse, tsurgeon CLI,
-                        fix security issues, bug fixes
+---
 
-2021-10-14    4.3.1     Minor bugfixes to German umlaut tokenization,
-                        CDC tokenizer offset, Hungarian model package
+## 📂 Project Modules
 
-2021-09-26    4.3.0     Add trained tokenizer from corenlp-it, add
-                        Italian and Hungarian pipelines using data
-                        from FBK, UD, Szeged, NYTK, and SPMRL.  Better
-                        emoji support in the PTB tokenizer
+### 1. Product Module
+- Product listing
+- Product details
+- Product search
 
-2021-05-14    4.2.2     Fix issue with demo.
+### 2. Review Module
+- Add reviews
+- Retrieve reviews
+- Review history
 
-2021-05-05    4.2.1     Fix Turkish locale bug, QuoteAnnotator crash
-                        fixes, smaller srparser models, improvements
-                        to enhanced UD converter, Updated dependencies
-                        (istack, protobuf), batch processing of
-                        semgrex & enhancer requests when using stanza
+### 3. NLP Module
+- Sentiment extraction
+- Score calculation
+- Text processing
 
-2020-11-16    4.2.0     Bug fixes, Retrained English parser models
-                        with improved trees, Updated dependencies
-                        (ejml, junit, jflex), Speed up loading
-                        Wikidict annotator, New features for server
-                        handling of tokensregex and tregex requests,
-                        Release built directly from GitHub repo
+### 4. Ranking Module
+- Dynamic score updates
+- Product ranking
 
-2020-07-31    4.1.0     Improved server interface, improved memory
-                        usage of sutime, spanish tokenization upgrades
+### 5. Analytics Module
+- Sentiment visualization
+- Review statistics
 
-2020-04-19    4.0.0     Changed to UDv2 tokenization ("new" LDC Treebank,
-                        for English); handles multi-word-tokens;
-                        improved UDv2-based taggers and parsers for
-                        English, French, German, Spanish; new French NER;
-                        new Chinese segmenter; library updates, bug fixes
+---
 
-2018-10-05    3.9.2     improved NER pipeline and entity mention
-                        confidences; support for Java 11; new POS
-                        models for English; 4 methods for setting
-                        document dates; tokenizer improvements;
-                        CoreNLP runs as filter from stdin to stdout;
-                        bug fixes
+## 🧠 Algorithms Used
 
-2018-02-27    3.9.1     Bug fixes, minor enhancements
+### Rule-Based Sentiment Analysis
+Classifies reviews based on predefined sentiment keywords.
 
-2018-01-31    3.9.0     Spanish KBP and new dependency parse model,
-                        wrapper API for data, quote attribution
-                        improvements, easier use of coref info, bug
-                        fixes
+### Lexicon-Based Scoring
+Assigns sentiment scores using a dictionary-based approach.
 
-2017-06-09    3.8.0     Web service annotator, discussion forum
-                        handling, new French and Spanish models
+### Negation Handling
+Detects phrases such as:
+- not good
+- don't like
+- didn't like
 
-2016-10-31    3.7.0     KBP Annotator, improved coreference, Arabic
-                        pipeline
+### Contrast Analysis
+Handles sentences containing:
+- but
+- however
 
-2015-12-09    3.6.0     Improved coreference, OpenIE integration,
-                        Stanford CoreNLP server
+Example:
 
-2015-04-20    3.5.2     Switch to Universal dependencies, add Chinese
-                        coreference system to CoreNLP
+```text
+Amazing product but terrible battery
+```
 
-2015-01-29    3.5.1     NER, dependency parser, SPIED improvements;
-                        general bugfixes
+The analyzer gives more importance to the second clause.
 
-2014-10-26    3.5.0     Upgrade to Java 1.8; add annotators for
-                        dependency parsing and relation extraction
+### Linear Search
+Used for product filtering and search functionality.
 
-2014-08-27    3.4.1     Add Spanish models
+---
 
-2014-06-16      3.4     Add shift reduce parser
+## 📊 Database Tables
 
-2014-01-04    3.3.1     Bugfix release
+### Products
 
-2013-11-12    3.3.0     Add sentiment model, minor sutime improvements
+| Column | Type |
+|----------|----------|
+| id | INT |
+| name | VARCHAR |
+| description | TEXT |
+| price | DOUBLE |
+| image_url | VARCHAR |
+| buy_link | VARCHAR |
+| score | INT |
 
-2013-06-19    3.2.0     New RNN parser model, more efficient tagger
+### Reviews
 
-2013-04-04    1.3.5     Speed improvements, coref improvements,
-                        Chinese version, -nthreads option
+| Column | Type |
+|----------|----------|
+| id | INT |
+| product_id | INT |
+| review_text | TEXT |
+| sentiment | VARCHAR |
 
-2012-11-12    1.3.4     Improved ner model and dependency code,
-                        now possible to change annotator pool for
-                        later StanfordCoreNLP objects
+---
 
-2012-07-09    1.3.3     Minor bug fixes
+## 🔌 API Endpoints
 
-2012-05-22    1.3.2     Improvements to sutime
+### Get Products
 
-2012-03-09    1.3.1     Now supports caseless models (available as DLC)
+```http
+GET /api/products
+```
 
-2011-12-16    1.3.0     Threadsafe!
-                        Bugs in time annotation fixed
+### Add Review
 
-2011-09-14    1.2.0     Time expression recognizer added to ner annotator
-                        Output bugfixes
-                        Parser can now substitute for tagger
+```http
+POST /api/add-review
+```
 
-2011-06-19    1.1.0     Improved coref release
+Parameters:
 
-2011-05-15    1.0.4     More efficient dcoref data structure
-                        Supports already-tokenized input text
+```text
+productId
+reviewText
+```
 
-2011-04-17    1.0.3     Compatible with other releases
-                        Support loading arbitrary annotators
-                        Tagger bug fixes, such as "EOS" token
+### Get Reviews
 
-2010-11-11    1.0.2     Remove wn.jar
+```http
+GET /api/reviews?productId=1
+```
 
-2010-11-11    1.0.1     Add xml removal
+### Test API
 
-2010-10-07      1.0     Initial release
+```http
+GET /api/test
+```
 
+---
+
+## ▶️ How to Run
+
+### Backend
+
+```bash
+mvn spring-boot:run
+```
+
+Runs on:
+
+```text
+http://localhost:8080
+```
+
+### Frontend
+
+```bash
+npm install
+npm run dev
+```
+
+Runs on:
+
+```text
+http://localhost:5173
+```
+
+---
+
+## 🎯 Future Enhancements
+
+- Machine Learning based sentiment analysis
+- User authentication and authorization
+- Product recommendation engine
+- Review moderation
+- Admin dashboard
+- Advanced analytics
+- Cloud deployment
+
+---
+
+## 👨‍💻 Author
+
+**K. Nitheesh**  
+B.Tech Computer Science Engineering
+
+---
+
+## 📜 License
+
+This project is developed for educational and academic purposes.
